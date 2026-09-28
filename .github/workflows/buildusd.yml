@@ -37,7 +37,7 @@ jobs:
   Linux:
     needs:
       - Validation
-    if: ${{ (github.event_name == 'pull_request' && needs.Validation.outputs.validation-failed != 'true') || github.event_name == 'push' }}
+    if: ${{ (github.event_name == 'pull_request' && needs.Validation.outputs.validation-failed != 'true') || github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-22.04
     permissions:
       contents: write # Grant write permissions in order to upload artifacts
@@ -194,7 +194,7 @@ jobs:
   macOS:
     needs:
       - Validation
-    if: ${{ (github.event_name == 'pull_request' && needs.Validation.outputs.validation-failed != 'true') || github.event_name == 'push' }}
+    if: ${{ (github.event_name == 'pull_request' && needs.Validation.outputs.validation-failed != 'true') || github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
     runs-on: macos-15
     permissions:
       contents: write # Grant write permissions in order to upload artifacts
@@ -260,7 +260,7 @@ jobs:
   Windows:
     needs:
       - Validation
-    if: ${{ (github.event_name == 'pull_request' && needs.Validation.outputs.validation-failed != 'true') || github.event_name == 'push' }}
+    if: ${{ (github.event_name == 'pull_request' && needs.Validation.outputs.validation-failed != 'true') || github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
     strategy:
       matrix:
         ARCH:
@@ -346,7 +346,7 @@ jobs:
   Wasm:
     needs:
       - Validation
-    if: ${{ (github.event_name == 'pull_request' && needs.Validation.outputs.validation-failed != 'true') || github.event_name == 'push' }}
+    if: ${{ (github.event_name == 'pull_request' && needs.Validation.outputs.validation-failed != 'true') || github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
     strategy:
       matrix:
         target: [Wasm, Wasm64]
